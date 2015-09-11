@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1432141273840.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5A17C6DF",
+    "lastKnownWriteTime" : 1702323561,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "rzk5obvbgp",
+        "caption" : "gdh",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=gdh&cache_key=rzk5obvbgp",
+        "displayedObservations" : 1875,
+        "environment" : "",
+        "object" : "gdh",
+        "totalObservations" : 1875,
+        "variables" : 6
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1432225963262.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "BEE2574A",
+    "lastKnownWriteTime" : 1702323561,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "o7puoggdyq",
+        "caption" : "mtsh",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=mtsh&cache_key=o7puoggdyq",
+        "displayedObservations" : 1875,
+        "environment" : "",
+        "object" : "mtsh",
+        "totalObservations" : 1875,
+        "variables" : 7
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

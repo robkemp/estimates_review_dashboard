@@ -9,13 +9,13 @@ library(ggplot2)
 
 #source("source_server.r")
 
-load("/opt/shiny-server/samples/sample-apps/codemog_data/county_est.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/county_hist.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/county_forecast.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_est.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_hist.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_hist.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_est.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/county_est.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/county_hist.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/county_forecast.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_est.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_hist.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_hist.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_est.rdata")
 
 
 

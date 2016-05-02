@@ -2,11 +2,11 @@ library(shinydashboard)
 library(shinythemes)
 library(codemog)
 library(dplyr)
-# load("/opt/shiny-server/samples/sample-apps/codemog_data/county_est.rdata")
-# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_est.rdata")
-# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_hist.rdata")
-# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_est.rdata")
-# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_hist.rdata")
+load("county_est.rdata")
+load("muni_est.rdata")
+load("muni_hist.rdata")
+load("muni_win_est.rdata")
+load("muni_win_hist.rdata")
 
 c_names=county_est%>%
   filter(year==2010)%>%

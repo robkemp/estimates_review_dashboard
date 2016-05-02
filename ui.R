@@ -2,11 +2,11 @@ library(shinydashboard)
 library(shinythemes)
 library(codemog)
 library(dplyr)
-load("/opt/shiny-server/samples/sample-apps/codemog_data/county_est.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_est.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_hist.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_est.rdata")
-load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_hist.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/county_est.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_est.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_hist.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_est.rdata")
+# load("/opt/shiny-server/samples/sample-apps/codemog_data/muni_win_hist.rdata")
 
 c_names=county_est%>%
   filter(year==2010)%>%
@@ -34,8 +34,8 @@ dashboardPage(
             fluidRow(box(selectInput("cnty","County:",
                                  choices=c_names$county)),
             valueBox(
-              "Pre-Release Finals, Can Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
-              color = "yellow", width=6))
+              "Pre-Release Drafts, Don't Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
+              color = "red", width=6))
               ,
             fluidRow(
               box(plotOutput("totalPlot", height = 250), 
@@ -57,8 +57,8 @@ dashboardPage(
             fluidRow(box(selectInput("muni","Municipality:",
                                      choices=m_names$municipality)),
                      valueBox(
-                       "Pre-Release Finals, Can Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
-                       color = "yellow", width=6)),
+                       "OLD DATA, DON'T USE", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
+                       color = "red", width=6)),
             fluidRow(
               box(plotOutput("mtotalPlot", height = 250), 
                   footer="Key: Blue=Historical, Red=Current Vintage, Green=Previous Vintage"),
@@ -79,7 +79,7 @@ dashboardPage(
             fluidRow(box(selectInput("dist","Special District:",
                                      choices=unique(sd_names$Areaname))),
                      valueBox(
-                       "Internal Only", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
+                       "OLD DATA, DON'T USE", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
                        color = "red", width=6)),
               box(
                 title = "Revision Table",

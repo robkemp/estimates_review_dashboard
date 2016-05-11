@@ -14,6 +14,7 @@ c_names=county_est%>%
 m_names=muni_est%>%
   filter(year==2010)%>%
   select(placefips, municipality)
+m_names$placefips[m_names$placefips=="12390"]="12387"
 sd_names=read.csv("district_estimates_current.csv", stringsAsFactors = FALSE)%>%
   select(LG_ID, Areaname)
 
@@ -57,7 +58,7 @@ dashboardPage(
             fluidRow(box(selectInput("muni","Municipality:",
                                      choices=m_names$municipality)),
                      valueBox(
-                       "OLD DATA, DON'T USE", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
+                       "Pre-Release Drafts, Don't Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
                        color = "red", width=6)),
             fluidRow(
               box(plotOutput("mtotalPlot", height = 250), 

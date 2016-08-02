@@ -35,7 +35,7 @@ dashboardPage(
             fluidRow(box(selectInput("cnty","County:",
                                  choices=c_names$county)),
             valueBox(
-              "Pre-Release Drafts, Don't Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
+              "Pre-Release Finals, Can Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
               color = "red", width=6))
               ,
             fluidRow(
@@ -58,7 +58,7 @@ dashboardPage(
             fluidRow(box(selectInput("muni","Municipality:",
                                      choices=m_names$municipality)),
                      valueBox(
-                       "Pre-Release Drafts, Don't Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
+                       "Pre-Release Finals, Can Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
                        color = "red", width=6)),
             fluidRow(
               box(plotOutput("mtotalPlot", height = 250), 

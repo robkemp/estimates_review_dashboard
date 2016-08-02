@@ -36,7 +36,7 @@ dashboardPage(
                                  choices=c_names$county)),
             valueBox(
               "Pre-Release Finals, Can Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
-              color = "red", width=6))
+              color = "yellow", width=6))
               ,
             fluidRow(
               box(plotOutput("totalPlot", height = 250), 
@@ -59,7 +59,7 @@ dashboardPage(
                                      choices=m_names$municipality)),
                      valueBox(
                        "Pre-Release Finals, Can Distribute", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
-                       color = "red", width=6)),
+                       color = "yellow", width=6)),
             fluidRow(
               box(plotOutput("mtotalPlot", height = 250), 
                   footer="Key: Blue=Historical, Red=Current Vintage, Green=Previous Vintage"),

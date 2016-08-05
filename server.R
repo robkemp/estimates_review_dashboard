@@ -75,15 +75,17 @@ mpvh=read.csv("muni_estimates_previous.csv", stringsAsFactors = FALSE)%>%
   select(municipality,placefips,countyfips, year, pv_housing)%>%
   filter(placefips!=0)
 sdc=read.csv("district_estimates_current.csv", stringsAsFactors = FALSE)%>%
-  gather(var, value_cv, -LG_ID:-Areaname)
+  gather(var, value_cv, -LG_ID:-District)
 # %>%
 #   mutate(var=paste0(var,"v14"))
 sdpv=read.csv("district_estimates_previous.csv", stringsAsFactors = FALSE)%>%
-  gather(var, value_pv, -LG_ID:-Areaname)
+  gather(var, value_pv, -LG_ID:-District)
 # %>%
 #   mutate(var_pv=paste0(var_pv,"v13"))
 sd=inner_join(sdc,sdpv)%>%
-  mutate(revision=value_cv-value_pv)
+  mutate(revision=round(round(value_cv,0)-round(value_pv,0), 0),
+         value_pv=round(value_pv,0),
+         value_cv=round(value_cv,0))
 hist=county_hist%>%
   filter(year<=2010, year>=2005)%>%
   select(county, countyfips, year, totalPopulation)
@@ -178,6 +180,20 @@ m_names=muni_est%>%
   filter(year==2010)%>%
   select(placefips, municipality)
 
+sd_pop=function(data,lgid){
+  # lgid=as.numeric(lgid)
+  
+  d=filter(data, LG_ID==lgid)%>%
+    separate(var, into=c("var", "year"), sep="_")
+  
+  p=ggplot(d, aes(x=year, y=value_cv, group=var))+
+    geom_line(aes(color=var, linetype=var),size=1)+
+    theme_codemog()+
+    labs(x="Year", y="Value", title="Current Vintage Variable Change")
+  return(p)
+  
+}
+
 totalPop=function(data,fips){
   fips=as.numeric(fips)
   
@@ -244,7 +260,7 @@ changePop=function(data,fips){
 shinyServer(function(input, output) {
   cntyfips=reactive({c_names%>%filter(county==input$cnty)%>%select(countyfips)})
   plcfips=reactive({m_names%>%filter(municipality==input$muni)%>%select(placefips)})
-  lgid=reactive({sd%>%filter(Areaname==input$dist)%>%select(LG_ID)})
+  lgid=reactive({sd%>%filter(District==input$dist)%>%select(LG_ID)%>%mutate(LG_ID=as.numeric(LG_ID))})
   mtotalPlot_input=reactive({mtotalPop(data=mgd, placefips=plcfips())})
   output$mtotalPlot=renderPlot({mtotalPlot_input()})
   mtotalHousing_input=reactive({mtotalHousing(data=gdh, placefips=plcfips())})
@@ -261,8 +277,10 @@ shinyServer(function(input, output) {
   output$mpopTable=renderDataTable({mts_in()})
   mtsh_in=reactive({mtsh%>%filter(placefips==as.numeric(plcfips()))%>%select(year,totalHousingUnits, revision)})
   output$housingTable=renderDataTable({mtsh_in()})
-  sd_in=reactive({sd%>%filter(LG_ID==as.numeric(unique(lgid())))%>%select(var,Current2013=value_cv, Previous2013=value_pv, revision)})
+  sd_in=reactive({sd%>%filter(LG_ID==as.numeric(unique(lgid())))%>%select(var,Current2014=value_cv, Previous2014=value_pv, revision)})
   output$distTable=renderDataTable({sd_in()})
+  # sd_p=reactive({sd_pop(sdc, lgid())})
+  # output$distPlot=renderPlot({sd_p()})
   comp_in=reactive({filter(ts_comp, countyfips==as.numeric(cntyfips()))})
   output$compTable=renderDataTable({comp_in()%>%select(year,NetMig, NetMig_Revise, GQChng, GQ_Revise,Births, Deaths, NatInc, NatInc_Revise )})
   output$popTableRank=renderDataTable({ts%>%select(county.x,year, totalPopulation, change, percent_change, revision)})

@@ -16,7 +16,7 @@ m_names=muni_est%>%
   select(placefips, municipality)
 m_names$placefips[m_names$placefips=="12390"]="12387"
 sd_names=read.csv("district_estimates_current.csv", stringsAsFactors = FALSE)%>%
-  select(LG_ID, Areaname)
+  select(LG_ID, District)
 
 dashboardPage(
   dashboardHeader(title= "Estimate Review"),
@@ -78,14 +78,18 @@ dashboardPage(
     tabItem(tabName = "district",
             
             fluidRow(box(selectInput("dist","Special District:",
-                                     choices=unique(sd_names$Areaname))),
+                                     choices=unique(sd_names$District))),
                      valueBox(
-                       "OLD DATA, DON'T USE", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
+                       "Pre-release Drafts, Don't Share", "Release Status", icon = icon("eye-open", lib = "glyphicon"),
                        color = "red", width=6)),
               box(
                 title = "Revision Table",
                 dataTableOutput("distTable")
-              )
+              ),
+            box(
+              title = "Trends",
+              plotOutput("distPlot")
+            )
             )
 #     tabItem(tabName = "rank",
 #             
